@@ -1,0 +1,8 @@
+[2021-03-04T17:13:02.249] [INFO] handleLogger - 
+***************info log start ***************
+数据库语句: 
+"select * from  user"
+当前目录: 
+"C:\\Users\\Administrator\\Desktop\\pet\\db\\cj.js"
+*************** info log end ***************
+
