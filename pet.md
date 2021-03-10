@@ -10,6 +10,8 @@
   +  router 接口地址
 + api 业务逻辑
  + 
++ public 静态文件
+ + 
 + .gittignore 过滤上传GitHub 的文件夹配置
 + app 入口文件
 ---
@@ -27,6 +29,8 @@
 | npm install koa-helmet --save|提高网站安全性插件|
 | npm install log4js|记录日志插件|
 | npm install koa-json|字符串转换|
+| npm install koa-static|访问静态资源插件|
+| npm i -S koa-socket|聊天应用 插件|
 
 ---
 ## 提高网站安全性插件详细

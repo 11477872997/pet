@@ -1,17 +1,45 @@
 const Koa = require('koa');
 const app = new Koa();
+
 const path = require('path');  
+
 const cluster = require('cluster');  //多线程
+
 const config = require('./config/config.js');// 全局配置文件
+
 require('console-color-mr'); // console.log 颜色插件
+
 const cors = require('koa2-cors');//跨域
+
 const helmet = require("koa-helmet");  //提高网站安全性
 app.use(helmet());
-// 字符串转换
-const json = require('koa-json');
-app.use(json());
 
+const json = require('koa-json');// 字符串转换
+app.use(json());
 const koaBody = require('koa-body');  //处理post请求参数
+// 配置解析请求中间件
+const router = require('./router/router.js')  //路由模块
+app.use(router.routes())  /*启动路由*/
+  .use(router.allowedMethods());
+
+const logsUtil = require('./config/log');  //自定日志
+
+const staticServer = require('koa-static');  //静态资源
+app.use(staticServer(__dirname , 'public'));
+
+
+
+
+
+
+
+
+
+
+
+/**
+ * 处理post请求参数
+ * */ 
 app.use(koaBody({
   multipart:true, // 支持文件上传
   encoding:'',
@@ -26,6 +54,9 @@ app.use(koaBody({
   }
 }));
 
+/**
+ * 处理跨域
+ * */ 
 app.use(
   cors({
     origin: function (ctx) { //设置允许来自指定域名请求
@@ -33,7 +64,7 @@ app.use(
       if (ctx.url === '/test') {
         return '*'; // 允许来自所有域名请求
       }
-      return 'http://10.168.31.11:8888'; //只允许http://localhost:8080这个域名的请求
+      return 'http://localhost:8080'; //只允许http://localhost:8080这个域名的请求
     },
     maxAge: 5, //指定本次预检请求的有效期，单位为秒。
     credentials: true, //是否允许发送Cookie
@@ -42,14 +73,11 @@ app.use(
     exposeHeaders: ['WWW-Authenticate', 'Server-Authorization'] //设置获取其他自定义字段
   })
 );
-// 配置解析请求中间件
-const router = require('./router/router.js')  //路由模块
-app.use(router.routes())  /*启动路由*/
-  .use(router.allowedMethods());
-  
 
-const logsUtil = require('./config/log');  //自定日志
-// 捕获全局请求不存在的接口返回404
+
+/**
+ * 捕获全局请求不存在的接口返回404
+ * */ 
 app.use(async (ctx, next) => {
   await next();
   if (parseInt(ctx.status) === 404) {
@@ -60,12 +88,19 @@ app.use(async (ctx, next) => {
     ctx.response.status = 500;
     ctx.body = "500"
   }
+  // console.log(ctx)
 })
-// 全局捕获应用层报错
+
+/**
+ * 全局捕获应用层报错
+ * */ 
 app.on('error', (err, ctx) => {
   console.error('服务器报错，请看log/error目录最新日志内容', err);
   logsUtil.logError(ctx, err)
 });
+
+
+
 
 /**
  * 多线程
