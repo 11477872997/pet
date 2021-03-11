@@ -28,14 +28,7 @@ const staticServer = require('koa-static');  //静态资源
 app.use(staticServer(__dirname , 'public'));
 
 
-   
-
-
-
-
-
-
-
+  
 
 /**
  * 处理post请求参数
@@ -60,11 +53,11 @@ app.use(koaBody({
 app.use(
   cors({
     origin: function (ctx) { //设置允许来自指定域名请求
-      // console.log(ctx)
+      console.log(ctx)
       if (ctx.url === '/test') {
         return '*'; // 允许来自所有域名请求
       }
-      return 'http://localhost:8080'; //只允许http://localhost:8080这个域名的请求
+      return 'http://localhost:8080'; //只允许http://localhost:8080这个域名的请求  
     },
     maxAge: 5, //指定本次预检请求的有效期，单位为秒。
     credentials: true, //是否允许发送Cookie
@@ -78,18 +71,19 @@ app.use(
 /**
  * 捕获全局请求不存在的接口返回404
  * */ 
-app.use(async (ctx, next) => {
-  await next();
-  if (parseInt(ctx.status) === 404) {
-    logsUtil.logResponse(ctx);
-    ctx.response.status = 404;
-    ctx.body = '404'
-  } else if (parseInt(ctx.status) === 500) {
-    ctx.response.status = 500;
-    ctx.body = "500"
-  }
-  // console.log(ctx)
-})
+// app.use(async (ctx, next) => {
+//   console.log(ctx)
+//   await next();
+//   // if (parseInt(ctx.status) === 404) {
+//   //   logsUtil.logResponse(ctx);
+//   //   ctx.response.status = 404;
+//   //   ctx.body = '404'
+//   // } else if (parseInt(ctx.status) === 500) {
+//   //   ctx.response.status = 500;
+//   //   ctx.body = "500"
+//   // }
+
+// })
 
 /**
  * 全局捕获应用层报错
@@ -99,7 +93,13 @@ app.on('error', (err, ctx) => {
   logsUtil.logError(ctx, err)
 });
 
+const server = require("http").createServer(app.callback());
+// 初始化 socket
+require('./socket/index')(server,cors);
 
+server.listen(`${config.host}`, () => {   //这里很关键  使用的是server来监听路由了 而不是使用router了
+  console.info(`主进程运行在${process.pid}`)
+})
 
 
 /**
@@ -111,24 +111,29 @@ app.on('error', (err, ctx) => {
  */
 
 //启用轮叫调度，实现负载均衡
-cluster.schedulingPolicy = cluster.SCHED_RR;
-if (cluster.isMaster) {//主进程
-  const numCPUs = require('os').cpus().length;
-  // 循环 fork 任务 CPU i5-7400 四核四进程
-  // 开启多个子进程
-  for (let i = 0; i < numCPUs; i++) {
-    cluster.fork();
-  }
-  cluster.on('exit', (worker, code, signal) => {
-    console.info(`主进程运行在 ${worker.process.pid} `);
-    // 主进程退出，子进程全部退出
-    for (let pid in worker) {
-      worker[pid].kill();
-    }
-  });
-} else {
-  //监听端口
-  app.listen(`${config.host}`, () => {
-    console.info(`子进程运行在${process.pid}`)
-  });
-}
+// cluster.schedulingPolicy = cluster.SCHED_RR;
+// if (cluster.isMaster) {//主进程
+//   const numCPUs = require('os').cpus().length;
+//   // 循环 fork 任务 CPU i5-7400 四核四进程
+//   // 开启多个子进程
+//   for (let i = 0; i < numCPUs; i++) {
+//     cluster.fork();
+//   }
+//   cluster.on('exit', (worker, code, signal) => {
+//     console.info(`主进程运行在 ${worker.process.pid} `);
+//     // 主进程退出，子进程全部退出
+//     for (let pid in worker) {
+//       worker[pid].kill();
+//     }
+//   });
+  
+// } else {
+//   //监听端口
+//   server.listen(`${config.host}`, () => {
+//     console.info(`子进程运行在${process.pid}`)
+//   });
+//   // 开启 http
+  
+ 
+
+// }

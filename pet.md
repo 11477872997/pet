@@ -30,7 +30,7 @@
 | npm install log4js|记录日志插件|
 | npm install koa-json|字符串转换|
 | npm install koa-static|访问静态资源插件|
-| npm i -S koa-socket|聊天应用 插件|
+| npm install socket.io|聊天应用 插件|
 
 ---
 ## 提高网站安全性插件详细
