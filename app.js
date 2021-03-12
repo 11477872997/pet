@@ -28,7 +28,6 @@ const staticServer = require('koa-static');  //静态资源
 app.use(staticServer(__dirname , 'public'));
 
 
-  
 
 /**
  * 处理post请求参数
@@ -95,11 +94,6 @@ const server = require("http").createServer(app.callback());
 // 初始化 socket
 require('./socket/index')(server,cors);
 
-server.listen(`${config.host}`, () => {   //这里很关键  使用的是server来监听路由了 而不是使用router了
-  console.info(`主进程运行在${process.pid}`)
-})
-
-
 /**
  * 多线程
  * cluster 用于监听 process(child) 子进程触发的各种事件
@@ -109,29 +103,25 @@ server.listen(`${config.host}`, () => {   //这里很关键  使用的是server�
  */
 
 //启用轮叫调度，实现负载均衡
-// cluster.schedulingPolicy = cluster.SCHED_RR;
-// if (cluster.isMaster) {//主进程
-//   const numCPUs = require('os').cpus().length;
-//   // 循环 fork 任务 CPU i5-7400 四核四进程
-//   // 开启多个子进程
-//   for (let i = 0; i < numCPUs; i++) {
-//     cluster.fork();
-//   }
-//   cluster.on('exit', (worker, code, signal) => {
-//     console.info(`主进程运行在 ${worker.process.pid} `);
-//     // 主进程退出，子进程全部退出
-//     for (let pid in worker) {
-//       worker[pid].kill();
-//     }
-//   });
+cluster.schedulingPolicy = cluster.SCHED_RR;
+if (cluster.isMaster) {//主进程
+  const numCPUs = require('os').cpus().length;
+  // 循环 fork 任务 CPU i5-7400 四核四进程
+  // 开启多个子进程
+  for (let i = 0; i < numCPUs; i++) {
+    cluster.fork();
+  }
+  cluster.on('exit', (worker, code, signal) => {
+    console.info(`主进程运行在 ${worker.process.pid} `);
+    // 主进程退出，子进程全部退出
+    for (let pid in worker) {
+      worker[pid].kill();
+    }
+  });
   
-// } else {
-//   //监听端口
-//   server.listen(`${config.host}`, () => {
-//     console.info(`子进程运行在${process.pid}`)
-//   });
-//   // 开启 http
-  
- 
-
-// }
+} else {
+  //监听端口
+  server.listen(`${config.host}`, () => {
+    console.info(`子进程运行在${process.pid}`)
+  });
+}
