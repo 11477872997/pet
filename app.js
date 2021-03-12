@@ -53,11 +53,10 @@ app.use(koaBody({
 app.use(
   cors({
     origin: function (ctx) { //设置允许来自指定域名请求
-      console.log(ctx)
       if (ctx.url === '/test') {
         return '*'; // 允许来自所有域名请求
       }
-      return 'http://localhost:8080'; //只允许http://localhost:8080这个域名的请求  
+      return 'http://localhost:8089'; //只允许http://localhost:8080这个域名的请求  
     },
     maxAge: 5, //指定本次预检请求的有效期，单位为秒。
     credentials: true, //是否允许发送Cookie
@@ -71,19 +70,18 @@ app.use(
 /**
  * 捕获全局请求不存在的接口返回404
  * */ 
-// app.use(async (ctx, next) => {
-//   console.log(ctx)
-//   await next();
-//   // if (parseInt(ctx.status) === 404) {
-//   //   logsUtil.logResponse(ctx);
-//   //   ctx.response.status = 404;
-//   //   ctx.body = '404'
-//   // } else if (parseInt(ctx.status) === 500) {
-//   //   ctx.response.status = 500;
-//   //   ctx.body = "500"
-//   // }
+app.use(async (ctx, next) => {
+  await next();
+  if (parseInt(ctx.status) === 404) {
+    logsUtil.logResponse(ctx);
+    ctx.response.status = 404;
+    ctx.body = '404'
+  } else if (parseInt(ctx.status) === 500) {
+    ctx.response.status = 500;
+    ctx.body = "500"
+  }
 
-// })
+})
 
 /**
  * 全局捕获应用层报错

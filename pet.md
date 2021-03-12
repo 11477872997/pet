@@ -30,7 +30,8 @@
 | npm install log4js|记录日志插件|
 | npm install koa-json|字符串转换|
 | npm install koa-static|访问静态资源插件|
-| npm install socket.io|聊天应用 插件|
+| npm install socket.io|聊天应用 插件|前端版下载：
+npm install socket.io-client 版本为："socket.io-client": "^2.3.1" 测试在组件中：import io from "socket.io-client";  this.socket = io("http://localhost:3000" || "/");|注意后端版本"socket.io": "^2.3.0"|
 
 ---
 ## 提高网站安全性插件详细
