@@ -10,7 +10,7 @@ const options = require('../api/cj.js');
 
 
 // 测试
-router.get('/getSocketUrl',options);
+router.post('/cj',options);
 
 
 

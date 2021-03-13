@@ -23,5 +23,3 @@ const options = async (ctx,next)=>{
   }
   
   module.exports = options
-
- 
