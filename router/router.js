@@ -8,11 +8,23 @@ const router = new Router({
 
 const options = require('../api/cj.js');
 
+const insertUser = require('../api/insertUser.js');
+
+const insertStorte = require('../api/insertStorte.js');
+
+
 
 // 测试
 router.post('/cj',options);
+
+//插入用户信息
+router.post('/insertUser',insertUser);
+//插入商家信息
+router.post('/insertStorte',insertStorte);
 
 
 
 
 module.exports = router
+
+

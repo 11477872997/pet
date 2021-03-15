@@ -1,8 +1,10 @@
 const findUserData = require('../db/cj'); //引入查询sql 语句
 const logsUtil = require('../config/log');//自定义日志；
+const md5 = require('../config/md5')  //md加密
 const options = async (ctx,next)=>{
       let req = ctx.request.body;
-    // console.log(ctx.request.files);
+      let md5Pass = md5.MD5(req);
+    console.log(md5Pass);
   // console.log(ctx.request.body);
   logsUtil.logResponse(ctx, req);	  //记录响应日志
        await findUserData()

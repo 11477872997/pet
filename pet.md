@@ -12,6 +12,8 @@
  + 
 + public 静态文件
  + 
++ SQL SQL建表语句
+ + sql.sql
 + .gittignore 过滤上传GitHub 的文件夹配置
 + app 入口文件
 ---
@@ -30,7 +32,8 @@
 | npm install log4js|记录日志插件|
 | npm install koa-json|字符串转换|
 | npm install koa-static|访问静态资源插件|
-| npm install socket.io|聊天应用 插件|
+| npm install md5-node|md5加密|
+| npm install socket.io|聊天应用 插件|后端版本请下载："socket.io": "^2.3.0"|前端版本："socket.io-client": "^2.3.1"|
 
 ---
 ## 提高网站安全性插件详细

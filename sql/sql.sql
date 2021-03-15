@@ -4,14 +4,14 @@ create database pet;
 use pet;
 -- 创建用户表
 
-create table user(id varchar(255),usernmae varchar(255),img varchar(500),place varchar(255),source char(255));
+create table user(id varchar(255) not null PRIMARY KEY,usernmae varchar(255) not null,img varchar(500) not null,place varchar(255) not null,source char(255) not null);
 
 -- 创建商家表
 
-create table storte(id varchar(255),usernmae varchar(255),password varchar(255),img varchar(500),place varchar(255),
-source char(255),
-StoreImage varchar(500),
-DetailedAddress varchar(500),
-ShopName char(255),
+create table storte(id varchar(255) not null PRIMARY KEY,usernmae varchar(255) not null,password varchar(255) not null,img varchar(500) not null,place varchar(255) not null,
+source char(255) not null,
+StoreImage varchar(500) not null,
+DetailedAddress varchar(500) not null,
+ShopName char(255) not null, 
 ShopIntroduction varchar(500),
-phoneNumber int(11));
+phoneNumber int(11) not null);

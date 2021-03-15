@@ -17,22 +17,11 @@ app.use(helmet());
 const json = require('koa-json');// 字符串转换
 app.use(json());
 const koaBody = require('koa-body');  //处理post请求参数
-// 配置解析请求中间件
-const router = require('./router/router.js')  //路由模块
-app.use(router.routes())  /*启动路由*/
-  .use(router.allowedMethods());
-
-const logsUtil = require('./config/log');  //自定日志
-
-const staticServer = require('koa-static');  //静态资源
-app.use(staticServer(__dirname , 'public'));
-
-
 
 /**
  * 处理post请求参数
  * */ 
-app.use(koaBody({
+ app.use(koaBody({
   multipart:true, // 支持文件上传
   encoding:'',
   formidable:{
@@ -45,6 +34,17 @@ app.use(koaBody({
     },
   }
 }));
+// 配置解析请求中间件
+const router = require('./router/router.js')  //路由模块
+app.use(router.routes())  /*启动路由*/
+  .use(router.allowedMethods());
+
+const logsUtil = require('./config/log');  //自定日志
+
+const staticServer = require('koa-static');  //静态资源
+app.use(staticServer(__dirname , 'public'));
+
+
 
 /**
  * 处理跨域
