@@ -1,9 +1,10 @@
 const insertStorteMessage = require('../db/dBinsertStorte'); //引入查询sql 语句
 const logsUtil = require('../config/log');//自定义日志；
+const md5 = require('../config/md5')  //md加密
 const insertStorte = async (ctx, next) => {
     let req = ctx.request.body;
     try {
-        if (req.id && req.usernmae && req.img && req.place && req.source,req.StoreImage && req.DetailedAddress && req.ShopName && req.phoneNumber) {
+        if (req.id && req.usernmae && req.img && req.place && req.password && req.source && req.StoreImage && req.DetailedAddress && req.ShopName && req.phoneNumber) {
             let choose = 0;
             let myDate = await insertStorteMessage(choose, req.id)
             console.log(myDate.length)
@@ -15,9 +16,14 @@ const insertStorte = async (ctx, next) => {
                     }
                 } else {
                     let choose = 1;
-                    let phoneNumber = Number(req.phoneNumber);
-                    console.log(typeof phoneNumber)
-                    await insertStorteMessage(choose, req.id,req.usernmae,req.password,req.img,req.place,req.source,req.StoreImage,req.DetailedAddress,req.ShopName,req.ShopIntroduction,phoneNumber);
+                    let phoneNumber = md5.MD5(Number(req.phoneNumber));  //电话号码
+                    let password = md5.MD5(req.password); //密码 
+                    let ShopIntroduction = req.ShopIntroduction;
+                    console.log(ShopIntroduction)
+                    if(ShopIntroduction == undefined){
+                        ShopIntroduction = ''
+                    }
+                    await insertStorteMessage(choose, req.id,req.usernmae,password,req.img,req.place,req.source,req.StoreImage,req.DetailedAddress,req.ShopName,ShopIntroduction,phoneNumber);
                     ctx.response.status = 200;
                     ctx.body = {
                         code: -1,

@@ -14,4 +14,4 @@ StoreImage varchar(500) not null,
 DetailedAddress varchar(500) not null,
 ShopName char(255) not null, 
 ShopIntroduction varchar(500),
-phoneNumber int(11) not null);
+phoneNumber varchar(255) not null);
