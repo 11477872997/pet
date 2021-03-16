@@ -9,8 +9,8 @@ const router = new Router({
 const options = require('../api/cj.js');
 
 const insertUser = require('../api/insertUser.js');
-
 const insertStorte = require('../api/insertStorte.js');
+const tokenStorte = require('../api/tokenStorte.js');
 
 
 
@@ -21,6 +21,8 @@ router.post('/cj',options);
 router.post('/insertUser',insertUser);
 //插入商家信息
 router.post('/insertStorte',insertStorte);
+//商家登陆验证
+router.post('/tokenStorte',tokenStorte);
 
 
 

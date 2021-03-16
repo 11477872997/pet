@@ -12,7 +12,10 @@ const  Config = {
       waitForConnection: true,//当无连接池可用时，等待(true) 还是抛错(false)
     connectionLimit: 100,//连接限制
     queueLimit: 0//最大连接等待数(0为不限制)
-  }
+  },
+  //秘钥
+ jwtSecret: 'jwtSecret',
+ tokenExpiresTime :  60 * 60 * 24 // 24小时过期
 }
 
 module.exports = Config;

@@ -1,23 +1,16 @@
 const Koa = require('koa');
 const app = new Koa();
-
 const path = require('path');  
-
 const cluster = require('cluster');  //多线程
-
 const config = require('./config/config.js');// 全局配置文件
-
 require('console-color-mr'); // console.log 颜色插件
-
-const cors = require('koa2-cors');//跨域
-
-const helmet = require("koa-helmet");  //提高网站安全性
-app.use(helmet());
-
 const json = require('koa-json');// 字符串转换
 app.use(json());
-const koaBody = require('koa-body');  //处理post请求参数
+const helmet = require("koa-helmet");  //提高网站安全性
+app.use(helmet());
+const logsUtil = require('./config/log');  //自定日志
 
+const koaBody = require('koa-body');  //处理post请求参数
 /**
  * 处理post请求参数
  * */ 
@@ -34,27 +27,17 @@ const koaBody = require('koa-body');  //处理post请求参数
     },
   }
 }));
-// 配置解析请求中间件
-const router = require('./router/router.js')  //路由模块
-app.use(router.routes())  /*启动路由*/
-  .use(router.allowedMethods());
 
-const logsUtil = require('./config/log');  //自定日志
-
-const staticServer = require('koa-static');  //静态资源
-app.use(staticServer(__dirname , 'public'));
-
-
-
+const cors = require('koa2-cors');//跨域
 /**
  * 处理跨域
  * */ 
 app.use(
   cors({
     origin: function (ctx) { //设置允许来自指定域名请求
-      if (ctx.url === '/test') {
-        return '*'; // 允许来自所有域名请求
-      }
+      // if (ctx.url === '/test') {
+      //   return '*'; // 允许来自所有域名请求
+      // }
       return 'http://localhost:8089'; //只允许http://localhost:8080这个域名的请求  
     },
     maxAge: 5, //指定本次预检请求的有效期，单位为秒。
@@ -64,12 +47,43 @@ app.use(
     exposeHeaders: ['WWW-Authenticate', 'Server-Authorization'] //设置获取其他自定义字段
   })
 );
+ 
+  // 表示里面的reginters、login不做token验证
+// 拦截没token认证的接口配置
+app.use(async (ctx, next) => {
+  return next().catch((err) => {
+    if (err.status === 401) {
+      ctx.status = 401;
+      ctx.body = {
+        code: '-1',
+        desc: '登陆过期，请重新登陆'
+      };
+    } else {
+      throw err;
+    }
+  })
+})
+  const koajwt = require('koa-jwt')  //路由权限控制
+  //路由权限控制
+  app.use(koajwt({
+    secret: config.jwtSecret
+  }).unless({
+    path: [/^\/api\/insertUser/, /^\/api\/insertStorte/, /^\/api\/tokenStorte/]
+  }))
+
+
+// 配置解析请求中间件
+const router = require('./router/router.js')  //路由模块
+app.use(router.routes())  /*启动路由*/
+  .use(router.allowedMethods());
+
 
 
 /**
  * 捕获全局请求不存在的接口返回404
  * */ 
 app.use(async (ctx, next) => {
+  console.log(ctx)
   await next();
   if (parseInt(ctx.status) === 404) {
     logsUtil.logResponse(ctx);
@@ -89,10 +103,14 @@ app.on('error', (err, ctx) => {
   console.error('服务器报错，请看log/error目录最新日志内容', err);
   logsUtil.logError(ctx, err)
 });
-
+//聊天socket服务器
 const server = require("http").createServer(app.callback());
 // 初始化 socket
 require('./socket/index')(server,cors);
+
+
+const staticServer = require('koa-static');  //静态资源
+app.use(staticServer(__dirname , 'public'));
 
 /**
  * 多线程

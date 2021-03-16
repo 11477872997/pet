@@ -3,6 +3,8 @@
  +  config.js 全局配置文件变量
  +  mysql.js 数据连接配置
  +  logconfig.js 日志配置
+ +  md5.js md5加密配置
+ + getToken token配置
  +  log.js 日记记录配置
 + db 数据库sql语句
   +  
@@ -33,6 +35,8 @@
 | npm install koa-json|字符串转换|
 | npm install koa-static|访问静态资源插件|
 | npm install md5-node|md5加密|
+| npm install koa-jwt|路由权限|
+| npm install jsonwebtoken|token 认证登陆|
 | npm install socket.io|聊天应用 插件|后端版本请下载："socket.io": "^2.3.0"|前端版本："socket.io-client": "^2.3.1"|
 
 ---
@@ -134,4 +138,10 @@
  Event: ‘listening’: 监听master向worker状态事件
  Event: ‘disconnect’: 监听worker断线事件
  Event: ‘exit’: 监听worker退出事件
+ ```
+## 解析token
+ ```
+  const getToken = require('./config/getToken'); //解析token
+  const result = await tools.verToken(token);
+  const token = ctx.headers.authorization;
  ```
