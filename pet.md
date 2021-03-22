@@ -24,7 +24,7 @@
 |:-|:-:|:-:|:-:|
 |npm install -y| 初始化项目|
 |npm install koa| koa2 框架|
-|npm install -g nodemon|   监控服务器/自动重新部署|配置package.json"scripts": { "server": "nodemon ./app" }|nodemon 不是内部命令的话记得配置环境变量|
+|npm install nodemon --save|   监控服务器/自动重新部署|配置package.json"scripts": { "server": "nodemon ./app" }|nodemon 不是内部命令的话记得配置环境变量|
 |npm install -D console-color-mr|console颜色插件|
 |npm install mysql --save| mysql 连接数据库插件|
 |npm i koa-router --save|koa 路由插件|

@@ -15,3 +15,5 @@ DetailedAddress varchar(500) not null,
 ShopName char(255) not null, 
 ShopIntroduction varchar(500),
 phoneNumber varchar(255) not null);
+
+

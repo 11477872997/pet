@@ -24,6 +24,8 @@ router.post('/insertStorte',insertStorte);
 //商家登陆验证
 router.post('/tokenStorte',tokenStorte);
 
+http://8.129.209.91:3000/api/tokenStorte
+
 
 
 

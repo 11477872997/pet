@@ -83,7 +83,7 @@ app.use(router.routes())  /*启动路由*/
  * 捕获全局请求不存在的接口返回404
  * */ 
 app.use(async (ctx, next) => {
-  console.log(ctx)
+  // console.log(ctx)
   await next();
   if (parseInt(ctx.status) === 404) {
     logsUtil.logResponse(ctx);
@@ -143,3 +143,7 @@ if (cluster.isMaster) {//主进程
     console.info(`子进程运行在${process.pid}`)
   });
 }
+
+
+
+
