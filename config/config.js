@@ -1,5 +1,5 @@
 const  Config = {
-   host:80,
+   host:3000,
     // 数据库配置
     databases: {
       database: 'pet',//数据库名称
