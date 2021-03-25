@@ -17,3 +17,12 @@ ShopIntroduction varchar(500),
 phoneNumber varchar(255) not null);
 
 
+-- 宠物圈 
+--动态表
+create table dunamic(DunamicId varchar(255) not null PRIMARY KEY,
+id varchar(255) not null,
+DuamincContent varchar(500) not null,
+DuaminTime datetime ,
+DuaminImg varchar(500) 
+);
+

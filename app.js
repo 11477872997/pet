@@ -36,9 +36,9 @@ app.use(
   cors({
     origin: function (ctx) { //设置允许来自指定域名请求
       // if (ctx.url === '/test') {
-      //   return '*'; // 允许来自所有域名请求
+        return '*'; // 允许来自所有域名请求
       // }
-      return 'http://localhost:8089'; //只允许http://localhost:8080这个域名的请求  
+      // return 'http://localhost:8089'; //只允许http://localhost:8080这个域名的请求  
     },
     maxAge: 5, //指定本次预检请求的有效期，单位为秒。
     credentials: true, //是否允许发送Cookie
@@ -64,11 +64,12 @@ app.use(async (ctx, next) => {
   })
 })
   const koajwt = require('koa-jwt')  //路由权限控制
+  const arr = [/^\/api\/insertUser/, /^\/api\/insertStorte/, /^\/api\/tokenStorte/,/^\/api\/dunamic/]
   //路由权限控制
   app.use(koajwt({
     secret: config.jwtSecret
   }).unless({
-    path: [/^\/api\/insertUser/, /^\/api\/insertStorte/, /^\/api\/tokenStorte/]
+    path: arr
   }))
 
 
@@ -143,7 +144,5 @@ if (cluster.isMaster) {//主进程
     console.info(`子进程运行在${process.pid}`)
   });
 }
-
-
 
 

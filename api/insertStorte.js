@@ -7,7 +7,6 @@ const insertStorte = async (ctx, next) => {
         if (req.id && req.usernmae && req.img && req.place && req.password && req.source && req.StoreImage && req.DetailedAddress && req.ShopName && req.phoneNumber) {
             let choose = 0;
             let myDate = await insertStorteMessage(choose, req.id)
-            console.log(myDate.length)
                 if (myDate.length > 0) {
                     ctx.response.status = 200;
                     ctx.body = {
@@ -19,7 +18,6 @@ const insertStorte = async (ctx, next) => {
                     let phoneNumber = md5.MD5(Number(req.phoneNumber));  //电话号码
                     let password = md5.MD5(req.password); //密码 
                     let ShopIntroduction = req.ShopIntroduction;
-                    console.log(ShopIntroduction)
                     if(ShopIntroduction == undefined){
                         ShopIntroduction = ''
                     }

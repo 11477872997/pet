@@ -4,14 +4,21 @@
  +  mysql.js 数据连接配置
  +  logconfig.js 日志配置
  +  md5.js md5加密配置
+ +  time.js  获取当前时间
  + getToken token配置
  +  log.js 日记记录配置
 + db 数据库sql语句
-  +  
+  +  dbdunamic       宠物圈说说动态sql
+  +  dBinsertStorte   商家插入sql
+  +  dBinsertUser     用户插入sql
+  +  dBtokenStorte   商家登陆sql
 + router 接口路由
   +  router 接口地址 
 + api 业务逻辑
- + 
+ +  dbdunamic       宠物圈说说动态接口
+  +  dBinsertStorte   商家插入接口
+  +  dBinsertUser     用户插入接口
+  +  dBtokenStorte   商家登陆接口
 + public 静态文件
  + 
 + SQL SQL建表语句

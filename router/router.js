@@ -11,11 +11,12 @@ const options = require('../api/cj.js');
 const insertUser = require('../api/insertUser.js');
 const insertStorte = require('../api/insertStorte.js');
 const tokenStorte = require('../api/tokenStorte.js');
+const dunamic = require('../api/dunamic.js');
 
 
 
 // 测试
-router.post('/cj',options);
+router.get('/cj',options);
 
 //插入用户信息
 router.post('/insertUser',insertUser);
@@ -23,8 +24,10 @@ router.post('/insertUser',insertUser);
 router.post('/insertStorte',insertStorte);
 //商家登陆验证
 router.post('/tokenStorte',tokenStorte);
+//宠物圈发动态
+router.post('/dunamic',dunamic);
 
-http://8.129.209.91:3000/api/tokenStorte
+
 
 
 
