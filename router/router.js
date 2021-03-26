@@ -11,6 +11,7 @@ const insertStorte = require('../api/insertStorte.js');
 const tokenStorte = require('../api/tokenStorte.js');
 const dunamic = require('../api/dunamic.js');
 const dunamicList = require('../api/dunamicList.js');
+const dunamiclistcomment = require('../api/dunamiclistcomment.js');
 
 //插入用户信息
 router.post('/insertUser',insertUser);
@@ -22,6 +23,8 @@ router.post('/tokenStorte',tokenStorte);
 router.post('/dunamic',dunamic);
 //宠物圈动态列表
 router.post('/dunamicList',dunamicList);
+//宠物圈动态列表评论
+router.post('/dunamiclistcomment',dunamiclistcomment);
 
 
 

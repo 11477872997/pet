@@ -11,7 +11,8 @@ const insertUser = async (ctx, next) => {
                     ctx.response.status = 200;
                     ctx.body = {
                         code: -1,
-                        desc: '用户已经存在'
+                        desc: '用户已经存在',
+                        data:myDate
                     }
                 } else {
                     let choose = 1;
