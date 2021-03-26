@@ -4,7 +4,7 @@ const md5 = require('../config/md5')  //md加密
 const insertStorte = async (ctx, next) => {
     let req = ctx.request.body;
     try {
-        if (req.id && req.usernmae && req.img && req.place && req.password && req.source && req.StoreImage && req.DetailedAddress && req.ShopName && req.phoneNumber) {
+        if (req.id && req.usernmae && req.img && req.place && req.password && req.source && req.StoreImage && req.DetailedAddress && req.ShopName && req.phoneNumber && req.Storelongitude && req.Storelaitude) {
             let choose = 0;
             let myDate = await insertStorteMessage(choose, req.id)
                 if (myDate.length > 0) {
@@ -21,11 +21,14 @@ const insertStorte = async (ctx, next) => {
                     if(ShopIntroduction == undefined){
                         ShopIntroduction = ''
                     }
-                    await insertStorteMessage(choose, req.id,req.usernmae,password,req.img,req.place,req.source,req.StoreImage,req.DetailedAddress,req.ShopName,ShopIntroduction,phoneNumber);
+                    await insertStorteMessage(choose, req.id,req.usernmae,password,req.img,req.place,req.source,req.StoreImage,req.DetailedAddress,req.ShopName,ShopIntroduction,phoneNumber,req.Storelongitude,req.Storelaitude);
+                    let num = 0;
+                    let myDate = await insertStorteMessage(num, req.id)
                     ctx.response.status = 200;
                     ctx.body = {
                         code: -1,
-                        desc: '插入成功'
+                        desc: '插入成功',
+                        data:myDate
                     }
                 }
                 logsUtil.logResponse(ctx, req);	  //记录响应日志

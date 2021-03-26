@@ -1,6 +1,7 @@
 const dbdunamic = require('../db/dbdunamic'); //引入查询sql 语句
 const logsUtil = require('../config/log');//自定义日志；
 const timeInfo = require('../config/time')//自定义时间
+const getTIme = require('../config/getTime')//自定义处理时间
 const dunamic = async (ctx,next)=>{
     let req = ctx.request.body;
     try{
@@ -21,10 +22,16 @@ const dunamic = async (ctx,next)=>{
                     DuaminImg = ''
                 }
                 await dbdunamic(choose,req.DunamicId,req.id,req.DuamincContent,DuaminTime,DuaminImg);
+                let num = 2;
+                let myDate = await dbdunamic(num, req.DunamicId);
+                let time = myDate[0].DuaminTime;
+                let newtime = getTIme(time);
+                myDate[0].DuaminTime = newtime;
                 ctx.response.status = 200;
                 ctx.body = {
                     code: -1,
-                    desc: '插入成功'
+                    desc: '插入成功',
+                    data:myDate
                 }
     
             }

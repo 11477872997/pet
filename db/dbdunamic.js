@@ -6,6 +6,9 @@ let dbdunamic = function(choose,DunamicId,id,DuamincContent,DuaminTime,DuaminImg
     }else if(choose == 1){
       let _sql = `insert into dunamic(DunamicId,id,DuamincContent,DuaminTime,DuaminImg) VALUES ('${DunamicId}','${id}','${DuamincContent}','${DuaminTime}','${DuaminImg}')`
       return query( _sql,__filename);
+    }else if(choose == 2){
+      let _sql = ` select * from dunamic where DunamicId = '${DunamicId}'`
+      return query( _sql,__filename);
     }
 }
 

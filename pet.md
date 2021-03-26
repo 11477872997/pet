@@ -5,6 +5,7 @@
  +  logconfig.js 日志配置
  +  md5.js md5加密配置
  +  time.js  获取当前时间
+ +  arrAip.js  处理返回前端时间
  + getToken token配置
  +  log.js 日记记录配置
  +  larrAipg.js api权限配置
