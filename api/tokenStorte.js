@@ -11,7 +11,7 @@ const tokenStorte = async (ctx, next) => {
             ctx.response.status = 200;
             ctx.body = {
                 code: -1,
-                text: '参数不正确或缺少参数！'
+                text: '参数不齐全或参数不对'
             }
         }else{
            let myUsernmae= await dBusernmae(req.usernmae);

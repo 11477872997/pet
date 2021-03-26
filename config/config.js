@@ -15,7 +15,6 @@ const  Config = {
   },
   //秘钥
  jwtSecret: 'jwtSecret',
- tokenExpiresTime :  60 * 60 * 24 // 24小时过期
+ tokenExpiresTime :  60 * 60 * 24 ,// 24小时过期
 }
-
 module.exports = Config;

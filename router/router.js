@@ -2,21 +2,15 @@ const Router = require('koa-router');
 const router = new Router({
     prefix: '/api' //统一加个前缀
 });
-// 首页路由
-
-
-
 const options = require('../api/cj.js');
+// 测试
+router.get('/cj',options);
 
 const insertUser = require('../api/insertUser.js');
 const insertStorte = require('../api/insertStorte.js');
 const tokenStorte = require('../api/tokenStorte.js');
 const dunamic = require('../api/dunamic.js');
-
-
-
-// 测试
-router.get('/cj',options);
+const dunamicList = require('../api/dunamicList.js');
 
 //插入用户信息
 router.post('/insertUser',insertUser);
@@ -26,6 +20,8 @@ router.post('/insertStorte',insertStorte);
 router.post('/tokenStorte',tokenStorte);
 //宠物圈发动态
 router.post('/dunamic',dunamic);
+//宠物圈动态列表
+router.post('/dunamicList',dunamicList);
 
 
 

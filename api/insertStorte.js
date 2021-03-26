@@ -33,7 +33,7 @@ const insertStorte = async (ctx, next) => {
             ctx.response.status = 416;
             ctx.body = {
                 code: -1,
-                desc: '参数不齐全'
+                desc: '参数不齐全或参数不对'
             }
         }
     } catch (err) {

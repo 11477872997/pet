@@ -64,12 +64,13 @@ app.use(async (ctx, next) => {
   })
 })
   const koajwt = require('koa-jwt')  //路由权限控制
-  const arr = [/^\/api\/insertUser/, /^\/api\/insertStorte/, /^\/api\/tokenStorte/,/^\/api\/dunamic/]
+  const arrAPI = require('./config/arrAip')  //路由权限控制
+  // const arr = [/^\/api\/insertUser/, /^\/api\/insertStorte/, /^\/api\/tokenStorte/,/^\/api\/dunamic/]
   //路由权限控制
   app.use(koajwt({
     secret: config.jwtSecret
   }).unless({
-    path: arr
+    path: arrAPI
   }))
 
 
