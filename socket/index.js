@@ -2,7 +2,7 @@
  * 聊天 模块
  * 
  */
-odule.exports = (server,cors) =>{
+module.exports = (server,cors) =>{
     // const io = require("socket.io")(server, { cors: true });
     const io = require("socket.io")(server, {cors: true});
    //定义一个对象保存当前在线的用户
