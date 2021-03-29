@@ -1,3 +1,6 @@
+/**
+ *  路由接口权限配置是否需要tonken 认证
+ */
 const myAPI  = {   //权限
   insertUser: /^\/api\/insertUser/,
   insertStorte: /^\/api\/insertStorte/,

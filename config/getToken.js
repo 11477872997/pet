@@ -1,3 +1,6 @@
+/**
+ * toeken 配置
+ */
 const getToken = require('jsonwebtoken');
 const Config = require('../config/config');
 exports.verToken = function (token) {

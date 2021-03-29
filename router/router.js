@@ -1,3 +1,6 @@
+/**
+ *koa 路由
+ */
 const Router = require('koa-router');
 const router = new Router({
     prefix: '/api' //统一加个前缀

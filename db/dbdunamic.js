@@ -1,3 +1,6 @@
+/**
+ * 发表动态接口sql
+ */
 const query =require('../config/mysql');  //连接数据库
 let dbdunamic = function(choose,DunamicId,id,DuamincContent,DuaminTime,DuaminImg) {
     if(choose == 0){

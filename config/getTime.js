@@ -1,3 +1,6 @@
+/**
+ * 返回前端时间处理
+ */
 function getTIme(time){
     let times = '';
     let d = new Date(time);

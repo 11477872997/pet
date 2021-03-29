@@ -1,3 +1,6 @@
+/**
+ * 用户授权插入接口
+ */
 const insertUserMessage = require('../db/dBinsertUser'); //引入查询sql 语句
 const logsUtil = require('../config/log');//自定义日志；
 const insertUser = async (ctx, next) => {

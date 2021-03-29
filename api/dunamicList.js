@@ -1,3 +1,6 @@
+/**
+ *   宠物圈 动态接口列表
+ */
 const dbdunamicList = require('../db/dbdunamicList'); //引入查询sql 语句
 const logsUtil = require('../config/log');//自定义日志；
 const dunamicList = async (ctx,next)=>{

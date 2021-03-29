@@ -1,3 +1,6 @@
+/**
+ * 商家插入接口
+ */
 const insertStorteMessage = require('../db/dBinsertStorte'); //引入查询sql 语句
 const logsUtil = require('../config/log');//自定义日志；
 const md5 = require('../config/md5')  //md加密

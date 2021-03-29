@@ -1,3 +1,6 @@
+/**
+ * 发表动态接口
+ */
 const dbdunamic = require('../db/dbdunamic'); //引入查询sql 语句
 const logsUtil = require('../config/log');//自定义日志；
 const timeInfo = require('../config/time')//自定义时间

@@ -1,3 +1,6 @@
+/**
+ * login 日志配置
+ */
 let path = require('path');
 
 //日志输出目录

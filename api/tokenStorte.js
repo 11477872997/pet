@@ -1,3 +1,7 @@
+/**
+ * 商家登陆接口
+ * 
+ */
 const {dBusernmae,dBpassword} = require("../db/dBtokenStorte");
 const logsUtil = require('../config/log');//自定义日志；
 const md5 = require('../config/md5')  //md加密

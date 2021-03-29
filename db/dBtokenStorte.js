@@ -1,3 +1,6 @@
+/**
+ * 商家登陆接口 sql
+ */
 const query =require('../config/mysql');  //连接数据库
 let dBusernmae = function(usernmae) {
        //查询用户

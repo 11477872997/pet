@@ -1,3 +1,6 @@
+/**
+ * 日志文件生成配置 
+ */
 let log4js = require('log4js');
 let logConfig = require('./logconfig');  //日志配置
  // 加载配置文件

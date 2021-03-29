@@ -1,3 +1,6 @@
+/**
+ * md5 文件配置
+ */
 let md5 = require('md5-node');
 exports.MD5 = function(val){
   let passSolt = md5(md5(val));

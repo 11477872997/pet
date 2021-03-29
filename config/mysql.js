@@ -1,4 +1,7 @@
-//mysqlConfig.js
+/**
+ * mysql 数据库配置
+ */
+
 const mysql = require('mysql');
 const dbConfig = require('./config');//数据库配置和服务端口
 const logsUtil = require('./log');  //自定日志

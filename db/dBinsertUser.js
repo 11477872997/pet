@@ -1,5 +1,7 @@
+/**
+ * 用户插入接口 sql
+ */
 const query =require('../config/mysql');  //连接数据库
-
 let insertUserMessage = function(choose,id,usernmae,img,place,source,userlongitude,userlaitude) {
    //查询id
    if(choose == 0){
