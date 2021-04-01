@@ -19,8 +19,8 @@ const dunamic = async (ctx,next)=>{
                 getfun.file(ctx,uploadPath).then((data)=>{
                     let choose = 0;
                     let DuaminImg = data;
-                    // console.log(data)
-                    dbdunamic(choose,req.id,req.DuamincContent,DuaminTime,DuaminImg);
+                    console.log(data)
+                    // dbdunamic(choose,req.id,req.DuamincContent,DuaminTime,DuaminImg);
                 })
             
                

@@ -10,9 +10,10 @@ let file = function (ctx,name){
     const reader = fs.createReadStream(file.path);
     // 修改文件的名称
     var myDate = new Date();
-    var newFilename = myDate.getTime()+'.'+file.name.split('.')[1];
+    let retData = `${myDate.getFullYear()}-${myDate.getMonth() + 1}-${myDate.getDate()}-${myDate.getHours()}-${myDate.getMinutes()}-${myDate.getSeconds()}`
+    let newFilename = myDate.getTime()+'.'+file.name.split('.')[1];
     let user  = name  //根据不同用户创建不同文件夹
-    var uploadPath = path.join(__dirname, '../public/upload')+ `/${user}`;
+    let uploadPath = path.join(__dirname, '../public/upload')+ `/${user}`+`/${retData}`;
     fs.mkdir(uploadPath,{recursive:true},(err)=>{
         if(err){
             // throw err;
