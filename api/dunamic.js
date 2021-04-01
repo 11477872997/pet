@@ -1,42 +1,44 @@
 /**
  * 发表动态接口
  */
+const fs = require('fs');
 const dbdunamic = require('../db/dbdunamic'); //引入查询sql 语句
 const logsUtil = require('../config/log');//自定义日志；
 const timeInfo = require('../config/time')//自定义时间
 const getTIme = require('../config/getTime')//自定义处理时间
+const getfun = require('../config/file')  //自定义上传目录
 const dunamic = async (ctx,next)=>{
     let req = ctx.request.body;
     try{
-        if(req.DunamicId && req.id && req.DuamincContent ){
-            let choose = 0;
-            let myDate = await dbdunamic(choose, req.DunamicId);
-            if (myDate.length > 0) {
-                ctx.response.status = 200;
-                ctx.body = {
-                    code: -1,
-                    desc: '唯一id重复'
-                }
-            }else{
-                let choose = 1;
-                let DuaminTime = timeInfo;
-                let DuaminImg = req.DuaminImg;
-                 if(DuaminImg == undefined){
-                    DuaminImg = ''
-                }
-                await dbdunamic(choose,req.DunamicId,req.id,req.DuamincContent,DuaminTime,DuaminImg);
-                let num = 2;
-                let myDate = await dbdunamic(num, req.DunamicId);
-                let time = myDate[0].DuaminTime;
-                let newtime = getTIme(time);
-                myDate[0].DuaminTime = newtime;
-                ctx.response.status = 200;
-                ctx.body = {
-                    code: -1,
-                    desc: '插入成功',
-                    data:myDate
-                }
-    
+        if(req.id && req.DuamincContent ){  
+            let num = 1;  
+            let user = await dbdunamic(num,req.id); //查询用户
+            let uploadPath = user[0].usernmae;
+            let DuaminTime = timeInfo;  //时间
+            if( uploadPath != undefined){   //判断用户 生成用户文件夹
+                getfun.file(ctx,uploadPath).then((data)=>{
+                    let choose = 0;
+                    let DuaminImg = data;
+                    // console.log(data)
+                    dbdunamic(choose,req.id,req.DuamincContent,DuaminTime,DuaminImg);
+                })
+            
+               
+            }
+           
+           
+            // await dbdunamic(choose,req.id,req.DuamincContent,DuaminTime);
+            // // await dbdunamic(choose,req.DunamicId,req.id,req.DuamincContent,DuaminTime,DuaminImg);
+            // let num = 2;
+            // let data = await dbdunamic(num, req.DunamicId);
+            // let time = data[0].DuaminTime;
+            // let newtime = getTIme(time);
+            // data[0].DuaminTime = newtime;
+            ctx.response.status = 200;
+            ctx.body = {
+                code: -1,
+                desc: '插入成功',
+                // data
             }
          
         }else{

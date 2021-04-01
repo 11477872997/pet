@@ -2,18 +2,14 @@
  * 发表动态接口sql
  */
 const query =require('../config/mysql');  //连接数据库
-let dbdunamic = function(choose,DunamicId,id,DuamincContent,DuaminTime,DuaminImg) {
-    if(choose == 0){
-        let _sql = ` select DunamicId from dunamic where DunamicId = '${DunamicId}'`
-        return query( _sql,__filename);
-    }else if(choose == 1){
-      let _sql = `insert into dunamic(DunamicId,id,DuamincContent,DuaminTime,DuaminImg) VALUES ('${DunamicId}','${id}','${DuamincContent}','${DuaminTime}','${DuaminImg}')`
+let dbdunamic = function(choose,id,DuamincContent,DuaminTime,DuaminImg) {
+  if(choose == 0){
+      let _sql = `insert into dunamic(DunamicId,id,DuamincContent,DuaminTime,DuaminImg) VALUES (substring(MD5(RAND()),1,32),'${id}','${DuamincContent}','${DuaminTime}','${DuaminImg}')`
       return query( _sql,__filename);
-    }else if(choose == 2){
-      let _sql = ` select * from dunamic where DunamicId = '${DunamicId}'`
+    }else if(choose = 1){
+      let _sql = ` select usernmae from user where id = '${id}'`
       return query( _sql,__filename);
     }
 }
 
 module.exports = dbdunamic;
-
