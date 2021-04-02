@@ -9,6 +9,7 @@ const myAPI  = {   //权限
   dunamicList: /^\/api\/dunamicList/,
   particularspage: /^\/api\/particularspage/,
   thisPage: /^\/api\/thisPage/,
+  fliename: /^\/api\/fliename/,
 }
 
 const arrAPI = [
@@ -18,6 +19,7 @@ const arrAPI = [
   myAPI.dunamic,
   myAPI.dunamicList,
   myAPI.thisPage,
+  myAPI.fliename,
 ]
 
 module.exports = arrAPI

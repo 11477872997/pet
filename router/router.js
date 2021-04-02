@@ -17,7 +17,10 @@ const dunamicList = require('../api/dunamicList.js');
 const dunamiclistcomment = require('../api/dunamiclistcomment.js');
 const particularspage = require('../api/particularspage.js');
 const thisPage = require('../api/thisPage.js');
+const fliename = require('../api/fliename.js');
 
+// 上传图片接口
+router.post('/fliename',fliename);
 //插入用户信息
 router.post('/insertUser',insertUser);
 //插入商家信息

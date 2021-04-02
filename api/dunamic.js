@@ -1,30 +1,30 @@
 /**
  * 发表动态接口
  */
-const fs = require('fs');
+ const fs = require('fs');
+ const path = require('path');
 const dbdunamic = require('../db/dbdunamic'); //引入查询sql 语句
 const logsUtil = require('../config/log');//自定义日志；
 const timeInfo = require('../config/time')//自定义时间
 const getTIme = require('../config/getTime')//自定义处理时间
-const getfun = require('../config/file')  //自定义上传目录
 const dunamic = async (ctx,next)=>{
     let req = ctx.request.body;
+    // console.log("req"+req)
     try{
-        if(req.id && req.DuamincContent ){  
+        if(req.id && req.DuamincContent){  
+            
+
             let num = 1;  
             let user = await dbdunamic(num,req.id); //查询用户
-            let uploadPath = user[0].usernmae;
-            let DuaminTime = timeInfo;  //时间
-            if( uploadPath != undefined){   //判断用户 生成用户文件夹
-                getfun.file(ctx,uploadPath).then((data)=>{
-                    let choose = 0;
-                    let DuaminImg = data;
-                    console.log(data)
-                    // dbdunamic(choose,req.id,req.DuamincContent,DuaminTime,DuaminImg);
-                })
-            
-               
-            }
+            let uploadPath = `public/upload/${user[0].usernmae}/${req.name}`;
+                fs.readdir( `${uploadPath}`, function (err, files) {
+                    console.log(`${uploadPath}`)
+                    if (err) {
+                      return console.log('目录不存在')
+                    }
+                     console.log(files)
+                  })
+ 
            
            
             // await dbdunamic(choose,req.id,req.DuamincContent,DuaminTime);
