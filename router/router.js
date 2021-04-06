@@ -2,6 +2,8 @@
  *koa 路由
  */
 const Router = require('koa-router');
+const fs = require('fs');
+const path = require('path');
 const router = new Router({
     prefix: '/api' //统一加个前缀
 });
@@ -18,6 +20,8 @@ const dunamiclistcomment = require('../api/dunamiclistcomment.js');
 const particularspage = require('../api/particularspage.js');
 const thisPage = require('../api/thisPage.js');
 const fliename = require('../api/fliename.js');
+const ifStorte = require('../api/ifStorte.js');
+const longitude = require('../api/longitude.js');
 
 // 上传图片接口
 router.post('/fliename',fliename);
@@ -25,6 +29,8 @@ router.post('/fliename',fliename);
 router.post('/insertUser',insertUser);
 //插入商家信息
 router.post('/insertStorte',insertStorte);
+// 判断商家接口
+router.post('/ifStorte',ifStorte);
 //商家登陆验证
 router.post('/tokenStorte',tokenStorte);
 //宠物圈发动态
@@ -37,6 +43,8 @@ router.post('/dunamiclistcomment',dunamiclistcomment);
 router.post('/particularspage',particularspage);
 //宠物圈 列表详情页
 router.post('/thisPage',thisPage);
+// 公共获取经纬度
+router.post('/longitude',longitude);
 
 
 

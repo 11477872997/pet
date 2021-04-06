@@ -60,6 +60,10 @@ app.use(async (ctx, next) => {
     }
   })
 })
+
+const staticServer = require('koa-static');  //静态资源
+app.use(staticServer(__dirname , 'public'));
+
   const koajwt = require('koa-jwt')  //路由权限控制
   const arrAPI = require('./config/arrAip')  //路由权限控制
   // const arr = [/^\/api\/insertUser/, /^\/api\/insertStorte/, /^\/api\/tokenStorte/,/^\/api\/dunamic/]
@@ -107,9 +111,6 @@ const server = require("http").createServer(app.callback());
 // 初始化 socket
 require('./socket/index')(server,cors);
 
-
-const staticServer = require('koa-static');  //静态资源
-app.use(staticServer(__dirname , 'public'));
 
 /**
  * 多线程
