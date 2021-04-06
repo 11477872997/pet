@@ -16,33 +16,59 @@ const dunamic = async (ctx, next) => {
             let num = 1;
             let user = await dbdunamic(num, null, req.id); //查询用户
             let uploadPath = `public/upload/${user[0].usernmae}/${req.fliename}`;
-            let myfile =  fs.readdirSync(`${uploadPath}`, function (err, files) {
-                if (err) {
-                    return console.log('目录不存在');
+            //检测文件或者文件夹存在 nodeJS
+           let fsExistsSync =  function (uploadPath) {
+                try{
+                    fs.accessSync(path.join(__dirname,"../"+ uploadPath));
+                }catch(e){
+                    return false;
                 }
-                return files;
-            });
+                return true;
+            }
+           if(fsExistsSync(uploadPath) == false){   //目录不存在 
             let choose = 0;
+            let  uploadPath = '';
             await dbdunamic(choose, DunamicId, req.id, req.DuamincContent, timeInfo, uploadPath);
             let data = await Dunam(DunamicId);
-            let arr = [];
-            myfile.forEach(function(item){
-                arr.push({
-                    content:data[0].DuaminImg+"/"+item
-                })
-            })
             let time = data[0].DuaminTime;
             let newtime = getTIme(time);
             data[0].DuaminTime = newtime;
-            data.push({
-                photos:arr
-            })
             ctx.response.status = 200;
             ctx.body = {
                 code: -1,
                 desc: '插入成功',
                 data
             }
+           }else if(fsExistsSync(uploadPath) == true){ //目录存在
+              let myfile =  fs.readdirSync(`${uploadPath}`, function (err, files) {
+                if (err) {
+                    console.log(err)
+                    return err
+                }
+                return files;
+            });
+             let arr = [];
+            myfile.forEach(function(item){
+                arr.push({
+                    content:uploadPath+"/"+item
+                })
+            })
+            let choose = 0;
+            await dbdunamic(choose, DunamicId, req.id, req.DuamincContent, timeInfo, JSON.stringify(arr));
+            let data = await Dunam(DunamicId);
+            let time = data[0].DuaminTime;
+            let newtime = getTIme(time);
+            data[0].DuaminTime = newtime;
+            data[0].DuaminImg = JSON.parse(data[0].DuaminImg);
+            ctx.response.status = 200;
+            ctx.body = {
+                code: -1,
+                desc: '插入成功',
+                data
+            }
+           }
+          
+            
 
         } else {
             ctx.response.status = 416;

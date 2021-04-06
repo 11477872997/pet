@@ -7,7 +7,7 @@ const dunamicList = async (ctx,next)=>{
     let req = ctx.request.body;
     try{
         if(req.curPage && req.pageSize){
-          let data =  await dbdunamicList(req.curPage,req.pageSize);
+          let data =  await dbdunamicList(req.curPage,req.pageSize);          
            ctx.response.status = 200;
            ctx.body = {
                code: -1,
