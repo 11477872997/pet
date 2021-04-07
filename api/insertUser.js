@@ -6,7 +6,7 @@ const logsUtil = require('../config/log');//自定义日志；
 const insertUser = async (ctx, next) => {
     let req = ctx.request.body;
     try {
-        if (req.id && req.usernmae && req.img && req.place && req.source) {
+        if (req.id && req.usernmae && req.img && req.place && req.source && req.UserType) {
             let choose = 0;
             let myDate = await insertUserMessage(choose, req.id)
             console.log(myDate.length)
@@ -19,7 +19,7 @@ const insertUser = async (ctx, next) => {
                     }
                 } else {
                     let choose = 1;
-                    await insertUserMessage(choose, req.id, req.usernmae, req.img, req.place, req.source);
+                    await insertUserMessage(choose, req.id, req.usernmae, req.img, req.place, req.source,req.UserType);
                     let num = 0;
                     let myDate = await insertUserMessage(num, req.id)
                     ctx.response.status = 200;

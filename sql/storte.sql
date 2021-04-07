@@ -1,17 +1,17 @@
 /*
  Navicat Premium Data Transfer
 
- Source Server         : 宠物数据库
+ Source Server         : 宠物
  Source Server Type    : MySQL
- Source Server Version : 50726
+ Source Server Version : 80012
  Source Host           : localhost:3306
  Source Schema         : pet
 
  Target Server Type    : MySQL
- Target Server Version : 50726
+ Target Server Version : 80012
  File Encoding         : 65001
 
- Date: 06/04/2021 09:41:20
+ Date: 06/04/2021 21:44:35
 */
 
 SET NAMES utf8mb4;
@@ -37,7 +37,8 @@ CREATE TABLE `storte`  (
   `Storelaitude` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '商家纬度',
   `StoreTime` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '经营时间',
   `Storemanage` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '经营项目',
+  `UserType` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '用户类型',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = MyISAM CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = MyISAM AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 SET FOREIGN_KEY_CHECKS = 1;

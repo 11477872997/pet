@@ -3,11 +3,18 @@
  */
 const dbdunamicList = require('../db/dbdunamicList'); //引入查询sql 语句
 const logsUtil = require('../config/log');//自定义日志；
+const getTIme = require('../config/getTime');//自定义处理时间
 const dunamicList = async (ctx,next)=>{
     let req = ctx.request.body;
     try{
         if(req.curPage && req.pageSize){
-          let data =  await dbdunamicList(req.curPage,req.pageSize);          
+          let data =  await dbdunamicList(req.curPage,req.pageSize); 
+          data.forEach(function(item,index){
+              data[index].DuaminImg = JSON.parse(data[index].DuaminImg); 
+            let time = data[index].DuaminTime;
+            let newtime = getTIme(time);
+            data[index].DuaminTime = newtime;
+          }) 
            ctx.response.status = 200;
            ctx.body = {
                code: -1,
