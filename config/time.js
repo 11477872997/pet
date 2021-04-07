@@ -9,17 +9,14 @@
  * 根据时间戳获取年,月,日,时,分,秒
  * @param {*} nTimeStamps 
  */
-function getTimeInfo(nTimeStamps) {
+function getTimeInfo() {
     //转毫秒
-    let date = new Date(nTimeStamps * 1000);
+    let date = new Date()
     //返回数据
     let retData = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()} ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`
     return retData;
 }
  
-//当前时间戳
-let curTimeStamps = getNowSceond();
-//时间戳转对象
-let timeInfo = getTimeInfo(curTimeStamps);
+let timeInfo = getTimeInfo();
 
 module.exports =  timeInfo;

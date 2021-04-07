@@ -7,7 +7,6 @@ const { dbdunamic, Dunam } = require('../db/dbdunamic'); //引入查询sql 语�
 const logsUtil = require('../config/log');//自定义日志；
 const timeInfo = require('../config/time')//自定义时间
 const getTIme = require('../config/getTime');//自定义处理时间
-const arrAPI = require('../config/arrAip');
 const dunamic = async (ctx, next) => {
     let req = ctx.request.body;
     try {

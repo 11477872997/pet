@@ -8,7 +8,14 @@ const dunamicList = async (ctx,next)=>{
     let req = ctx.request.body;
     try{
         if(req.curPage && req.pageSize){
-          let data =  await dbdunamicList(req.curPage,req.pageSize); 
+        let curPage = '';
+          if(req.pageSize < 10){
+            curPage = req.curPage;
+          }else{
+            curPage = Number((req.curPage -1)*req.pageSize);
+          }
+          console.log(curPage)
+          let data =  await dbdunamicList(curPage,req.pageSize); 
           data.forEach(function(item,index){
               data[index].DuaminImg = JSON.parse(data[index].DuaminImg); 
             let time = data[index].DuaminTime;
