@@ -7,9 +7,9 @@ const timeInfo = require('../config/time')//自定义时间
 const dunamiclistcomment = async (ctx, next) => {
     let req = ctx.request.body;
     try {
-        if(req.CommentId && req.id && req.DunamicId && req.CommentContent && req.replyId){
+        if(req.CommentId  && req.DunamicId && req.CommentContent){
             let CommentTime = timeInfo;
-            await dbdunamiclistcomment(req.CommentId ,req.id ,req.DunamicId ,req.CommentContent ,CommentTime,req.replyId);
+            await dbdunamiclistcomment(req.CommentId ,req.DunamicId ,req.CommentContent ,CommentTime,req.replyId);
             ctx.response.status = 200;
             ctx.body = {
                 code: -1,

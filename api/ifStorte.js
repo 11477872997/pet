@@ -1,19 +1,19 @@
 /**
- * 判断商家接口
+ * 判断商家/用户接口
  */
- const insertStorteMessage = require('../db/dBinsertStorte'); //引入查询sql 语句
+ const dbifStorte = require('../db/dbifStorte'); //引入查询sql 语句
  const logsUtil = require('../config/log');//自定义日志；
  const ifStorte = async (ctx, next) => {
      let req = ctx.request.body;
      try {
          if (req.id) {
-             let choose = 0;
-             let myDate = await insertStorteMessage(choose, req.id)
+             let myDate = await dbifStorte(req.id)
                  if (myDate.length > 0) {
                      ctx.response.status = 200;
                      ctx.body = {
                          code: -1,
                          desc: '用户已经存在',
+                         data:myDate
                      }
                  }else{
                   ctx.response.status = 200;

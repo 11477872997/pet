@@ -9,9 +9,9 @@ const particularspage = async (ctx,next)=>{
     try{
         if(req.DunamicId){
           let data =   await dbparticularspage(req.DunamicId);
-          let time = data[0].DuaminTime;
-            let newtime = getTIme(time);
-            data[0].CommentTime = newtime;
+          // let time = data[0].DuaminTime;
+          //   let newtime = getTIme(time);
+          //   data[0].CommentTime = newtime;
             ctx.response.status = 200;
             ctx.body = {
                 code: -1,

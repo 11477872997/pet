@@ -14,14 +14,17 @@ const dunamicList = async (ctx,next)=>{
           }else{
             curPage = Number((req.curPage -1)*req.pageSize);
           }
-          console.log(curPage)
+         
           let data =  await dbdunamicList(curPage,req.pageSize); 
-          data.forEach(function(item,index){
-              data[index].DuaminImg = JSON.parse(data[index].DuaminImg); 
+          data.forEach(function(item,index){ 
             let time = data[index].DuaminTime;
             let newtime = getTIme(time);
             data[index].DuaminTime = newtime;
+           if(data[index].DuaminImg != ""){
+            data[index].DuaminImg = JSON.parse( data[index].DuaminImg);
+           }
           }) 
+
            ctx.response.status = 200;
            ctx.body = {
                code: -1,
@@ -41,7 +44,7 @@ const dunamicList = async (ctx,next)=>{
             code: 0,
             msg: "服务器异常"
         }
-        logsUtil.logError(ctx, error);	  //错误日志
+        logsUtil.logError(ctx, error);    //错误日志
         console.error('insertStorteMessage服务器报错，请看log/error目录最新日志内容', error);
     }
 

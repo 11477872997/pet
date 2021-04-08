@@ -17,6 +17,7 @@ const myAPI  = {   //权限
 const arrAPI = [
   myAPI.insertUser,
   myAPI.insertStorte,
+  myAPI.particularspage,
   myAPI.tokenStorte,
   myAPI.dunamic,
   myAPI.dunamicList,

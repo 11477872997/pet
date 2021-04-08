@@ -7,6 +7,7 @@ const { dbdunamic, Dunam } = require('../db/dbdunamic'); //引入查询sql 语�
 const logsUtil = require('../config/log');//自定义日志；
 const timeInfo = require('../config/time')//自定义时间
 const getTIme = require('../config/getTime');//自定义处理时间
+const arrAPI = require('../config/arrAip');
 const dunamic = async (ctx, next) => {
     let req = ctx.request.body;
     try {
@@ -27,7 +28,7 @@ const dunamic = async (ctx, next) => {
            if(fsExistsSync(uploadPath) == false){   //目录不存在 
             let choose = 0;
             let  uploadPath = '';
-            await dbdunamic(choose, DunamicId, req.id, req.DuamincContent, timeInfo, uploadPath);
+            await dbdunamic(choose, DunamicId, req.id, req.DuamincContent,timeInfo, uploadPath);
             let data = await Dunam(DunamicId);
             let time = data[0].DuaminTime;
             let newtime = getTIme(time);
@@ -52,6 +53,7 @@ const dunamic = async (ctx, next) => {
                     content:uploadPath+"/"+item
                 })
             })
+            // console.log(arr)
             let choose = 0;
             await dbdunamic(choose, DunamicId, req.id, req.DuamincContent, timeInfo, JSON.stringify(arr));
             let data = await Dunam(DunamicId);
