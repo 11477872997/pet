@@ -10,7 +10,7 @@ const  Config = {
       user: 'root',//mysql用户名
       password: 'root123',//mysql密码
       port: '3306',//mysql端口号
-      host: "127.0.0.1",//服务器i
+      host: "8.129.209.91",//服务器i
       connecTimeout: 500,//连接超时,
       multipleStatements: false,//是否允许一个query中包含多条sql语句
       waitForConnection: true,//当无连接池可用时，等待(true) 还是抛错(false)

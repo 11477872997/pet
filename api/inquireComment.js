@@ -1,14 +1,14 @@
 /**
- * 宠物圈点击当前查询评论与评论接口
+ * 宠物圈点击当前动态查询评列表接口
  */
-const dbparticularspage = require('../db/dbparticularspage'); //引入查询sql 语句
+const {dbinquireComment} = require('../db/dbinquireComment'); //引入查询sql 语句
 const logsUtil = require('../config/log');//自定义日志；
 const getTIme = require('../config/getTime')//自定义处理时间
-const particularspage = async (ctx,next)=>{
+const inquireComment = async (ctx,next)=>{
     let req = ctx.request.body;
     try{
         if(req.DunamicId){
-          let data =   await dbparticularspage(req.DunamicId);
+          let data =  await dbinquireComment(req.DunamicId);
           data.forEach(function(item,index){ 
             let time = data[index].CommentTime;
             let newtime = getTIme(time);
@@ -40,4 +40,4 @@ const particularspage = async (ctx,next)=>{
 
 }
 
-module.exports = particularspage;
+module.exports = inquireComment;

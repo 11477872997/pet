@@ -8,18 +8,22 @@ module.exports = (server,cors) =>{
    //定义一个对象保存当前在线的用户
 // var map = {}
 io.on('connection',function(socket) {
-    console.log('客户端有连接',socket.id);
-    // socket.emit('success', '连接聊天服务器成功',socket.id);
-    // socket.on('disconnect', (data) => { 
-    //     console.error('用户连接断开',socket.id);
-    //     io.emit('quit', socket.id)
-    // })
-    socket.on('sendMsg', (data) => {
-        console.log(data) 
-        data.id = socket.id;
-        io.emit('receiveMessage', data)
-    })   
-      
-}); 
-
+    // console.log('客户端有连接',socket.id);
+    // // socket.emit('success', '连接聊天服务器成功',socket.id);
+    // // socket.on('disconnect', (data) => { 
+    // //     console.error('用户连接断开',socket.id);
+    // //     io.emit('quit', socket.id)
+    // // })
+    // socket.on('sendMsg', (data) => {
+    //     console.log(data) 
+    //     data.id = socket.id;
+    //     io.emit('receiveMessage', data)
+    // })   
+     socket.on('error',(err)=>{
+        console.log(err);
+        
+    });
+     
+})
 }
+

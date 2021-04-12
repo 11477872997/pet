@@ -28,6 +28,7 @@ const dunamic = async (ctx, next) => {
            if(fsExistsSync(uploadPath) == false){   //目录不存在 
             let choose = 0;
             let  uploadPath = '';
+            // console.log(timeInfo)
             await dbdunamic(choose, DunamicId, req.id, req.DuamincContent,timeInfo, uploadPath);
             let data = await Dunam(DunamicId);
             let time = data[0].DuaminTime;
@@ -55,6 +56,7 @@ const dunamic = async (ctx, next) => {
             })
             // console.log(arr)
             let choose = 0;
+            // console.log(timeInfo)
             await dbdunamic(choose, DunamicId, req.id, req.DuamincContent, timeInfo, JSON.stringify(arr));
             let data = await Dunam(DunamicId);
             let time = data[0].DuaminTime;

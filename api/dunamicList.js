@@ -4,6 +4,7 @@
 const dbdunamicList = require('../db/dbdunamicList'); //引入查询sql 语句
 const logsUtil = require('../config/log');//自定义日志；
 const getTIme = require('../config/getTime');//自定义处理时间
+const getChina = require('../config/city');//自定义处理城市
 const dunamicList = async (ctx,next)=>{
     let req = ctx.request.body;
     try{
@@ -14,17 +15,18 @@ const dunamicList = async (ctx,next)=>{
           }else{
             curPage = Number((req.curPage -1)*req.pageSize);
           }
-         
           let data =  await dbdunamicList(curPage,req.pageSize); 
           data.forEach(function(item,index){ 
-            let time = data[index].DuaminTime;
+            let time = data[index].DuaminTime;  //处理时间
             let newtime = getTIme(time);
             data[index].DuaminTime = newtime;
+            let place =  data[index].place; //处理城市
+            let newplace = getChina(place);
+            data[index].place = newplace;
            if(data[index].DuaminImg != ""){
             data[index].DuaminImg = JSON.parse( data[index].DuaminImg);
            }
           }) 
-
            ctx.response.status = 200;
            ctx.body = {
                code: -1,
