@@ -13,6 +13,7 @@ const fliename = async (ctx, next) => {
             let uploadPathth = users[0].usernmae;
             if (uploadPathth != undefined) {
                 const file = ctx.request.files.file; // 上传的文件在ctx.request.files.file
+                // console.log(file)
                 // 创建可读流
                 const reader = fs.createReadStream(file.path);
                 // 修改文件的名称

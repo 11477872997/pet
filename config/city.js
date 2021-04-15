@@ -4,10 +4,14 @@
 
 function getChina(provinces){
   let newProvinces = provinces.split("-")
-  let a = newProvinces[0];
-  let city = newProvinces[1];
-   a = a.replace(a[0],a[0].toLowerCase()); //转换小写
-   city = city.replace(city[0],city[0].toLowerCase());
+  let a,city;
+  if(newProvinces[0]!= '' && newProvinces[1] != ''){
+        a = newProvinces[0];
+        city = newProvinces[1];
+        a = a.replace(a[0],a[0].toLowerCase()); //转换小写
+        city = city.replace(city[0],city[0].toLowerCase());
+  }
+  
     let name = '';
     let cities = '';
     let province = [{ name: "beijing", cities: ["xicheng", "dongcheng", "chongwen", "xuanwu", "chaoyang", "haidian", "fengtai", "shijingshan", "mentougou", "fangshan", "tongzhou", "shunyi", "daxing", "changping", "pinggu", "huairou", "miyun", "yanqing"] },

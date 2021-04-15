@@ -45,6 +45,33 @@ app.use(
   })
 );
  
+
+
+// const static = require('koa-static');  //静态资源
+// app.use(static(__dirname , 'public'));
+
+const static = require("koa-static")  
+
+// // 重写URL,改掉/public
+app.use(async (ctx, next) => {
+    // 判断,如果当前请求是以/public开头, 重写其url再放行
+    if (ctx.request.url.startsWith('/public')) {
+        ctx.request.url = ctx.request.url.replace('/public', '');
+    }
+    // else 不是/public开头,统一放行
+    await next();
+});
+
+//处理静态资源,maxage为缓存时间，单位为毫秒
+app.use(static(path.resolve('public'),{maxage:599999.9880000001}))
+
+
+
+
+
+
+
+
   // 表示里面的reginters、login不做token验证
 // 拦截没token认证的接口配置
 app.use(async (ctx, next) => {
@@ -61,8 +88,7 @@ app.use(async (ctx, next) => {
   })
 })
 
-const staticServer = require('koa-static');  //静态资源
-app.use(staticServer(__dirname , 'public'));
+
 
   const koajwt = require('koa-jwt')  //路由权限控制
   const arrAPI = require('./config/arrAip')  //路由权限控制
@@ -79,6 +105,9 @@ app.use(staticServer(__dirname , 'public'));
 const router = require('./router/router.js')  //路由模块
 app.use(router.routes())  /*启动路由*/
   .use(router.allowedMethods());
+
+
+
 
 
 

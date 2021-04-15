@@ -7,7 +7,6 @@ const myAPI  = {   //权限
   tokenStorte: /^\/api\/tokenStorte/,
   dunamic: /^\/api\/dunamic/,
   dunamicList: /^\/api\/dunamicList/,
-  particularspage: /^\/api\/particularspage/,
   thisPage: /^\/api\/thisPage/,
   fliename: /^\/api\/fliename/,
   ifStorte: /^\/api\/ifStorte/,
@@ -16,13 +15,13 @@ const myAPI  = {   //权限
   inquireComment: /^\/api\/inquireComment/,
   reply: /^\/api\/reply/,
   commentSon: /^\/api\/commentSon/,
+  ifusername: /^\/api\/ifusername/,
  
 }
 
 const arrAPI = [
   myAPI.insertUser,      //插入用户信息
   myAPI.insertStorte,    //插入商家信息
-  myAPI.particularspage,
   myAPI.tokenStorte,     //商家登陆验证
   myAPI.dunamic,         //宠物圈发动态
   myAPI.dunamicList,     //宠物圈动态列表
@@ -34,6 +33,7 @@ const arrAPI = [
   myAPI.inquireComment,  //宠物圈查询当前动态评论列表接口
   myAPI.reply,           //宠物圈当前动态评论列表接口
   myAPI.commentSon,     //宠物圈当前动态评论的评论列表接口
+  myAPI.ifusername,     //判断商家用户名
 ]
 
 module.exports = arrAPI

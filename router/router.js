@@ -16,8 +16,6 @@ const insertStorte = require('../api/insertStorte.js');
 const tokenStorte = require('../api/tokenStorte.js');
 const dunamic = require('../api/dunamic.js');
 const dunamicList = require('../api/dunamicList.js');
-
-const particularspage = require('../api/particularspage.js');
 const thisPage = require('../api/thisPage.js');
 const fliename = require('../api/fliename.js');
 const ifStorte = require('../api/ifStorte.js');
@@ -26,7 +24,7 @@ const comment = require('../api/comment.js');
 const inquireComment = require('../api/inquireComment.js');
 const reply = require('../api/reply.js');
 const commentSon = require('../api/commentSon.js');
-
+const ifusername = require('../api/ifusername.js');
 
 // 上传图片接口
 router.post('/fliename',fliename);
@@ -50,8 +48,8 @@ router.post('/inquireComment',inquireComment);
 router.post('/reply',reply);
 //宠物圈当前动态二级评论的评论列表接口
 router.post('/commentSon',commentSon);
-
-
+// 判断商家用户名
+router.post('/ifusername',ifusername);
 //宠物圈 列表详情页
 router.post('/thisPage',thisPage);
 // 公共获取经纬度
@@ -60,8 +58,7 @@ router.post('/longitude',longitude);
 
 
 
-//宠物圈点击当前详情评论与评论
-router.post('/particularspage',particularspage);
+
 
 
 

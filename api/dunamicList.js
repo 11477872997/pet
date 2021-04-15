@@ -31,7 +31,7 @@ const dunamicList = async (ctx,next)=>{
            ctx.body = {
                code: -1,
                desc: '查询成功',
-               data:data
+               data
            }
         }else{
             ctx.response.status = 416;
