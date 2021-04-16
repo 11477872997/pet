@@ -1,5 +1,5 @@
 /**
- * 评论与回复接口 sql
+ * 小程序-宠物圈-当前评论--插入
  */
 const query =require('../config/mysql');  //连接数据库
 let dbcomment = function(CommentId,DunamicId,id,CommentContent,replyId,CommentTime) {
@@ -7,6 +7,8 @@ let dbcomment = function(CommentId,DunamicId,id,CommentContent,replyId,CommentTi
             '${CommentId}','${DunamicId}','${id}','${CommentContent}','${replyId}','${CommentTime}' )   `;
        return query( _sql,__filename);
 }
+
+//小程序-宠物圈-当前的评论的评论/回复 --插入
 let dbreply = function(CommentId,DunamicId,id,CommentContent,replyId,CommentTime,discussid) {
         let _sql = `insert into comment(CommentId,DunamicId,id,CommentContent,replyId,CommentTime,discussid) VALUES (
             '${CommentId}','${DunamicId}','${id}','${CommentContent}','${replyId}','${CommentTime}','${discussid}' )   `;

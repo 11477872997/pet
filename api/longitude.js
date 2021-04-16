@@ -1,5 +1,5 @@
 /**
- * 用户授权插入接口
+ * 小程序-公共-获取经纬度接口--插入
  */
 const dblongitude = require('../db/dblongitude'); //引入查询sql 语句
 const logsUtil = require('../config/log');//自定义日志；

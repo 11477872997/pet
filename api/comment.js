@@ -1,14 +1,15 @@
 /**
- * 评论接口
+ * 小程序-宠物圈-当前评论--插入
  */
 const {dbcomment,dbreply} = require('../db/dbcomment'); //引入查询sql 语句
 const logsUtil = require('../config/log');//自定义日志；
-const timeInfo = require('../config/time')//自定义时间
 const comment = async (ctx, next) => {
     let req = ctx.request.body;
     try {
         if(req.DunamicId  && req.id && req.CommentContent && req.replyId){
-            let CommentTime = timeInfo;
+            let dates = new Date();
+            //返回数据
+            let CommentTime = `${dates.getFullYear()}-${dates.getMonth() + 1}-${dates.getDate()} ${dates.getHours()}:${dates.getMinutes()}:${dates.getSeconds()}`
             let CommentId = `${new Date().getTime()}-${Math.random().toString(36).substr(2)}`;
             await dbcomment(CommentId,req.DunamicId,req.id,req.CommentContent,req.replyId,CommentTime);
             ctx.response.status = 200;

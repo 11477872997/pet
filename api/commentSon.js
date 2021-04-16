@@ -1,5 +1,5 @@
 /**
- * 宠物圈当前动态评论的评论列表接口
+ * 小程序-宠物圈-当前动态评论的评论列表--二级-1--查询
  */
 const {dbcommentSon,dbSon} = require('../db/dbinquireComment'); //引入查询sql 语句
 const logsUtil = require('../config/log');//自定义日志；
@@ -14,7 +14,13 @@ const commentSon = async (ctx,next)=>{
                     let newtime = getTIme(time);
                     data[i].CommentTime = newtime;
                     let dataSon = await  dbSon(req.DunamicId,data[i].CommentId);
-                    data[i].dataSon = dataSon;  
+                    for(let j = 0;j<dataSon.length;j++){
+                        let timeson =  dataSon[j].CommentTime;
+                        let newtimeson = getTIme(timeson);
+                        dataSon[j].CommentTime = newtimeson;
+                    }
+                   
+                    data[i].dataSon = dataSon;
               }
             ctx.response.status = 200;
             ctx.body = {

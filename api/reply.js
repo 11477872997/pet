@@ -1,14 +1,15 @@
 /**
- * 回复接口
+ * 小程序-宠物圈-当前的评论的评论/回复 --插入
  */
 const {dbreply}= require('../db/dbcomment'); //引入查询sql 语句
 const logsUtil = require('../config/log');//自定义日志；
-const timeInfo = require('../config/time')//自定义时间
 const reply = async (ctx, next) => {
     let req = ctx.request.body;
     try {
         if(req.discussid && req.DunamicId  && req.id && req.CommentContent && req.replyId){
-            let CommentTime = timeInfo;
+              let dates = new Date();
+            //返回数据
+            let CommentTime = `${dates.getFullYear()}-${dates.getMonth() + 1}-${dates.getDate()} ${dates.getHours()}:${dates.getMinutes()}:${dates.getSeconds()}`
                let CommentId = `${new Date().getTime()}-${Math.random().toString(30).substr(2)}`;
                await dbreply(CommentId,req.DunamicId,req.id,req.CommentContent,req.replyId,CommentTime,req.discussid);
             ctx.response.status = 200;

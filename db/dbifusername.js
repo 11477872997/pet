@@ -1,5 +1,5 @@
 /**
- * 判断商家用户名
+ * 判小程序 判断是否有该商家名--查询
  */
 const query =require('../config/mysql');  //连接数据库
 let dbifusername = function(usernmae) {

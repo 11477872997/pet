@@ -1,5 +1,5 @@
 /**
- *   宠物圈 动态接口列表
+ *   小程序-宠物圈-动态查询列表接口--查询
  */
 const dbdunamicList = require('../db/dbdunamicList'); //引入查询sql 语句
 const logsUtil = require('../config/log');//自定义日志；

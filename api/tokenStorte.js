@@ -1,5 +1,5 @@
 /**
- * 商家登陆接口
+ * H5-商家登陆接口--登陆
  * 
  */
 const {dBusernmae,dBpassword} = require("../db/dBtokenStorte");

@@ -1,5 +1,5 @@
 /**
- * 用户插入接口 sql
+ * 小程序-授权-用户插入接口--插入
  */
 const query =require('../config/mysql');  //连接数据库
 let insertUserMessage = function(choose,id,usernmae,img,place,source,UserType) {

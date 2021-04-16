@@ -1,5 +1,5 @@
 /**
- * 商家登陆接口 sql
+ * 商H5-商家登陆接口--登陆
  */
 const query =require('../config/mysql');  //连接数据库
 let dBusernmae = function(usernmae) {

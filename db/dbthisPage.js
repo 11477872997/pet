@@ -1,5 +1,5 @@
 /**
- * 宠物圈点击当前详情页sql
+ * 小程序-宠物圈-查询当前详情页接口--查询
  */
  const query =require('../config/mysql');  //连接数据库
  let dbthisPage = function(DunamicId) {

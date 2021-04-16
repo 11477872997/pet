@@ -1,5 +1,5 @@
 /**
- * 商家插入接口
+ *小程序-授权-商家注册接口
  */
 const fs = require('fs');
 const path = require('path');
@@ -8,11 +8,7 @@ const logsUtil = require('../config/log');//自定义日志；
 const md5 = require('../config/md5')  //md加密
 const insertStorte = async (ctx, next) => {
     let req = ctx.request.body;
-    // console.log(req);
-    // console.log('--------------')
-
     const file = ctx.request.files.file; // 上传的文件在ctx.request.files.file
-    // console.log(file)
     try {
         if (req.id && req.usernmae && req.img && req.place && req.password && req.source && req.StoreImage && req.DetailedAddress && req.ShopName && req.phoneNumber && req.StoreTime && req.Storemanage && req.UserType) {
             let choose = 0;

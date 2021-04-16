@@ -1,5 +1,5 @@
 /**
- * 判断商家/用户接口
+ * 小程序-公共-判断用户与商家是否存在的接口--查询
  */
  const dbifStorte = require('../db/dbifStorte'); //引入查询sql 语句
  const logsUtil = require('../config/log');//自定义日志；

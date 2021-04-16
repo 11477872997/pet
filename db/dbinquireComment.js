@@ -1,5 +1,5 @@
 /**
- * 评论与回复接口 sql
+ * 小程序-宠物圈-当前动态评论列表--0一级--查询
  */
 const query =require('../config/mysql');  //连接数据库
 let dbinquireComment = function(DunamicId) {
@@ -18,6 +18,7 @@ let dbinquireComment = function(DunamicId) {
      `       
        return query( _sql,__filename);
 }
+// 小程序-宠物圈-当前动态评论的评论列表--二级-1--查询
 let dbcommentSon = function(discussid) {
         let _sql = `  SELECT a.id,a.img,a.usernmae,t.CommentContent,t.CommentTime, t.CommentId
     FROM comment t ,  user a

@@ -1,15 +1,17 @@
 /**
- * 发表动态接口
+ * 小程序-宠物圈-发表动态接口--插入
  */
 const fs = require('fs');
 const path = require('path');
 const { dbdunamic, Dunam } = require('../db/dbdunamic'); //引入查询sql 语句
 const logsUtil = require('../config/log');//自定义日志；
-const timeInfo = require('../config/time')//自定义时间
 const getTIme = require('../config/getTime');//自定义处理时间
 const arrAPI = require('../config/arrAip');
 const dunamic = async (ctx, next) => {
     let req = ctx.request.body;
+   let dates = new Date();
+            //返回数据
+   let retData = `${dates.getFullYear()}-${dates.getMonth() + 1}-${dates.getDate()} ${dates.getHours()}:${dates.getMinutes()}:${dates.getSeconds()}`
     try {
         if (req.id && req.DuamincContent && req.fliename) {
             let DunamicId = `${new Date().getTime()}-${Math.random().toString(36).substr(2)}`;
@@ -28,8 +30,7 @@ const dunamic = async (ctx, next) => {
            if(fsExistsSync(uploadPath) == false){   //目录不存在 
             let choose = 0;
             let  uploadPath = '';
-            // console.log(timeInfo)
-            await dbdunamic(choose, DunamicId, req.id, req.DuamincContent,timeInfo, uploadPath);
+            await dbdunamic(choose, DunamicId, req.id, req.DuamincContent,retData, uploadPath);
             let data = await Dunam(DunamicId);
             let time = data[0].DuaminTime;
             let newtime = getTIme(time);
@@ -54,10 +55,9 @@ const dunamic = async (ctx, next) => {
                     content:uploadPath+"/"+item
                 })
             })
-            // console.log(arr)
+      
             let choose = 0;
-            // console.log(timeInfo)
-            await dbdunamic(choose, DunamicId, req.id, req.DuamincContent, timeInfo, JSON.stringify(arr));
+            await dbdunamic(choose, DunamicId, req.id, req.DuamincContent, retData, JSON.stringify(arr));
             let data = await Dunam(DunamicId);
             let time = data[0].DuaminTime;
             let newtime = getTIme(time);

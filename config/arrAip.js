@@ -16,24 +16,26 @@ const myAPI  = {   //权限
   reply: /^\/api\/reply/,
   commentSon: /^\/api\/commentSon/,
   ifusername: /^\/api\/ifusername/,
+  stotemap:/^\/api\/stotemap/,
  
 }
 
 const arrAPI = [
-  myAPI.insertUser,      //插入用户信息
-  myAPI.insertStorte,    //插入商家信息
-  myAPI.tokenStorte,     //商家登陆验证
-  myAPI.dunamic,         //宠物圈发动态
-  myAPI.dunamicList,     //宠物圈动态列表
-  myAPI.thisPage,        //宠物圈 列表详情页
-  myAPI.fliename,        // 上传图片接口
-  myAPI.ifStorte,        // 判断商家接口
-  myAPI.longitude,       // 公共获取经纬度
-  myAPI.comment,         //宠物圈评论接口
-  myAPI.inquireComment,  //宠物圈查询当前动态评论列表接口
-  myAPI.reply,           //宠物圈当前动态评论列表接口
-  myAPI.commentSon,     //宠物圈当前动态评论的评论列表接口
-  myAPI.ifusername,     //判断商家用户名
+  myAPI.insertUser,       //小程序-授权-用户插入接口--插入
+  myAPI.insertStorte,    //小程序-授权-商家注册接口
+  myAPI.tokenStorte,  //H5-商家登陆接口--登陆  
+  myAPI.dunamic,         //小程序-宠物圈-发表动态接口--插入
+  myAPI.dunamicList,    //小程序-宠物圈-动态查询列表接口--查询
+  myAPI.thisPage,     //小程序-宠物圈-查询当前详情页接口--查询
+  myAPI.fliename,    //公共-上传文件/图片等接口--插入
+  myAPI.ifStorte,      //小程序-公共-判断用户与商家是否存在的接口--查询
+  myAPI.longitude,       //小程序-公共-获取经纬度接口--插入
+  myAPI.comment,       //小程序-宠物圈-当前评论--插入  
+  myAPI.inquireComment,  //小程序-宠物圈-当前动态评论列表--0一级--查询
+  myAPI.reply,   //小程序-宠物圈-当前的评论的评论/回复 --插入   
+  myAPI.commentSon,   //小程序-宠物圈-当前动态评论的评论列表--二级-1--查询
+  myAPI.ifusername,     //小程序 判断是否有该商家名--查询
+  myAPI.stotemap,     //小程序地图找店--查询
 ]
 
 module.exports = arrAPI

@@ -1,5 +1,5 @@
 /**
- * 用户授权插入接口
+ * 小程序-授权-用户插入接口--插入
  */
 const insertUserMessage = require('../db/dBinsertUser'); //引入查询sql 语句
 const logsUtil = require('../config/log');//自定义日志；

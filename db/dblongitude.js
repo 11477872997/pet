@@ -1,3 +1,6 @@
+/*
+*小程序-公共-获取经纬度接口--插入
+*/
 const query =require('../config/mysql');  //连接数据库
 let dblongitude = function(id, typename, userlongitude, userlaitude) {
     if(typename  == 0 ){

@@ -1,5 +1,5 @@
 /**
- * 商家插入接口sql
+ * 小程序-授权-商家注册接口
  */
 const query =require('../config/mysql');  //连接数据库
 let insertStorteMessage = function(choose,id,usernmae,password,img,place,source,StoreImage,DetailedAddress,ShopName,ShopIntroduction,phoneNumber,StoreTime,Storemanage,UserType) {

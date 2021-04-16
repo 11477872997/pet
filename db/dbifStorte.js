@@ -1,5 +1,5 @@
 /**
- * 判断商家/用户接口
+ * 小程序-公共-判断用户与商家是否存在的接口--查询
  */
 const query =require('../config/mysql');  //连接数据库
 let dbifStorte = function(id) {

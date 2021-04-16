@@ -1,5 +1,5 @@
 /**
- * 公共上传图片接口
+ * 公共-上传文件/图片等接口--插入
  */
 const fs = require('fs');
 const path = require('path');

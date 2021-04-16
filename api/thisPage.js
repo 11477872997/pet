@@ -1,5 +1,5 @@
 /**
- * 宠物圈点击当前详情页
+ * 小程序-宠物圈-查询当前详情页接口--查询
  */
  const dbthisPage = require('../db/dbthisPage'); //引入查询sql 语句
  const logsUtil = require('../config/log');//自定义日志；

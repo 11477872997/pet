@@ -1,5 +1,5 @@
 /**
- * 宠物圈 接口列表 sql
+ * 小程序-宠物圈-动态查询列表接口--查询
  */
 const query =require('../config/mysql');  //连接数据库
 let dbdunamicList = function(curPage,pageSize) {

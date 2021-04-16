@@ -1,5 +1,5 @@
 /**
- * 发表动态接口sql
+ * 小程序-宠物圈-发表动态接口--插入
  */
 const query =require('../config/mysql');  //连接数据库
 let dbdunamic = function(choose,DunamicId,id,DuamincContent,DuaminTime,DuaminImg) {

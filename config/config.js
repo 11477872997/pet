@@ -3,7 +3,7 @@
  */
 
 const  Config = {
-   host:3000,
+   host:80,
     // 数据库配置
     databases: {
       database: 'pet',//数据库名称

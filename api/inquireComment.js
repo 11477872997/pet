@@ -1,5 +1,5 @@
 /**
- * 宠物圈点击当前动态查询评列表接口
+ * 小程序-宠物圈-当前动态评论列表--0一级--查询
  */
 const {dbinquireComment} = require('../db/dbinquireComment'); //引入查询sql 语句
 const logsUtil = require('../config/log');//自定义日志；

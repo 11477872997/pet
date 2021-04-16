@@ -1,5 +1,5 @@
 /**
- * 判断商家用户名
+ * 小程序 判断是否有该商家名--查询
  */
  const dbifusername = require('../db/dbifusername'); //引入查询sql 语句
  const logsUtil = require('../config/log');//自定义日志；
