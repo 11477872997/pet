@@ -17,7 +17,8 @@ const myAPI  = {   //权限
   commentSon: /^\/api\/commentSon/,
   ifusername: /^\/api\/ifusername/,
   stotemap:/^\/api\/stotemap/,
- 
+  userindexlist:/^\/api\/userindexlist/,
+  thisindexstore:/^\/api\/thisindexstore/,
 }
 
 const arrAPI = [
@@ -36,6 +37,8 @@ const arrAPI = [
   myAPI.commentSon,   //小程序-宠物圈-当前动态评论的评论列表--二级-1--查询
   myAPI.ifusername,     //小程序 判断是否有该商家名--查询
   myAPI.stotemap,     //小程序地图找店--查询
+  myAPI.userindexlist,     //小程序用户首页列表数据--查询
+  myAPI.thisindexstore,     //小程序首页列表当前商家--查询
 ]
 
 module.exports = arrAPI

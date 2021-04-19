@@ -11,8 +11,7 @@ const longitude = async (ctx, next) => {
             ctx.response.status = 200;
             ctx.body = {
                 code: -1,
-                desc: '插入成功',
-                data: myDate
+                desc: '插入成功'
             }
             logsUtil.logResponse(ctx, req);	  //记录响应日志
         } else {

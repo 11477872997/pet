@@ -26,6 +26,8 @@ const reply = require('../api/reply.js');
 const commentSon = require('../api/commentSon.js');
 const ifusername = require('../api/ifusername.js');
 const stotemap = require('../api/stotemap.js');
+const userindexlist = require('../api/userindexlist.js');
+const thisindexstore = require('../api/thisindexstore.js');
 
 router.post('/fliename',fliename);  //公共-上传文件/图片等接口--插入
 router.post('/insertUser',insertUser);  //小程序-授权-用户插入接口--插入
@@ -42,9 +44,9 @@ router.post('/ifusername',ifusername);//小程序 判断是否有该商家名--�
 router.post('/thisPage',thisPage);   //小程序-宠物圈-查询当前详情页接口--查询
 router.post('/longitude',longitude);  //小程序-公共-获取经纬度接口--插入
 router.post('/stotemap',stotemap);  //小程序地图找店--查询
+router.post('/userindexlist',userindexlist);  //小程序地图找店--查询
 
-
-
+router.post('/thisindexstore',thisindexstore);  //小程序首页列表当前商家--查询
 
 
 

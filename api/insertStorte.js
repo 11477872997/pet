@@ -21,7 +21,6 @@ const insertStorte = async (ctx, next) => {
                     }
                 } else {
                     let choose = 1;
-                    let phoneNumber = md5.MD5(Number(req.phoneNumber));  //电话号码
                     let password = md5.MD5(req.password); //密码 
                     let ShopIntroduction = req.ShopIntroduction;
                     if(ShopIntroduction == undefined){
@@ -34,7 +33,7 @@ const insertStorte = async (ctx, next) => {
                     let newFilename = newDate.getTime() + '.' + file.name.split('.')[1];
                     let user = req.usernmae //根据不同用户创建不同文件夹
                     let uploadPath = path.join(__dirname, '../public/store') + `/${user}` + `/${req.StoreImage}`;
-                    let StoreImage  = `/public/store `+ `/${user}` + `/${req.StoreImage}`+`/${newFilename}`
+                    let StoreImage  = `/public/store`+ `/${user}` + `/${req.StoreImage}`+`/${newFilename}`
                     // console.log(uploadPath)
                      fs.mkdir(uploadPath, {
                                         recursive: true
@@ -49,7 +48,7 @@ const insertStorte = async (ctx, next) => {
                                             reader.pipe(upStream);
                                         }
                             });
-                    await insertStorteMessage(choose, req.id,req.usernmae,password,req.img,req.place,req.source,StoreImage,req.DetailedAddress,req.ShopName,ShopIntroduction,phoneNumber,req.StoreTime,req.Storemanage,req.UserType);
+                    await insertStorteMessage(choose, req.id,req.usernmae,password,req.img,req.place,req.source,StoreImage,req.DetailedAddress,req.ShopName,ShopIntroduction,req.phoneNumber,req.StoreTime,req.Storemanage,req.UserType);
                     let num = 0;
                     let  data = await insertStorteMessage(num, req.id)
                     ctx.response.status = 200;

@@ -4,7 +4,7 @@
  */
 const {dBusernmae,dBpassword} = require("../db/dBtokenStorte");
 const logsUtil = require('../config/log');//自定义日志；
-const md5 = require('../config/md5')  //md加密
+const md5 = require('../config/md5')  //md解密
 const Config = require('../config/config');
 //引入jwt做token验证
 const jwt = require('jsonwebtoken');

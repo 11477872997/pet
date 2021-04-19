@@ -11,7 +11,7 @@ let insertStorteMessage = function(choose,id,usernmae,password,img,place,source,
     // 插入商家信息
     let _sql = `insert into storte(id,usernmae,password,img,place,source,StoreImage,DetailedAddress,ShopName,ShopIntroduction,phoneNumber,Storelongitude,Storelaitude,StoreTime,Storemanage,UserType)
      VALUES ('${id}','${usernmae}','${password}','${img}','${place}','${source}','${StoreImage}','${DetailedAddress}','${ShopName}','${ShopIntroduction}','${phoneNumber}',
-    '','','${StoreTime}','${Storemanage}','${UserType}')`
+    '0','0','${StoreTime}','${Storemanage}','${UserType}')`
     return query( _sql,__filename);
    };
 

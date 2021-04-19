@@ -10,7 +10,7 @@ let insertUserMessage = function(choose,id,usernmae,img,place,source,UserType) {
    }else if(choose == 1){
     // 插入用户信息
     let _sql = `insert into user(id,usernmae,img,place,source,userlongitude,userlaitude,UserType) VALUES ('${id}','${usernmae}',
-    '${img}','${place}','${source}','','','${UserType}')`
+    '${img}','${place}','${source}','0','0','${UserType}')`
     return query( _sql,__filename);
    };
 
